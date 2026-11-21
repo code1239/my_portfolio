@@ -31,7 +31,6 @@ export type Dict = {
     whatsappMessage: string;
     or: string;
   };
-  footer: string;
   aria: { toggleTheme: string; toggleLang: string };
 };
 
@@ -67,7 +66,6 @@ export const dictionaries: Record<Lang, Dict> = {
       whatsappMessage: "Hi Yusuf, I saw your portfolio and would like to get in touch.",
       or: "or",
     },
-    footer: "Built with Next.js",
     aria: { toggleTheme: "Toggle theme", toggleLang: "Switch language" },
   },
   tr: {
@@ -101,7 +99,6 @@ export const dictionaries: Record<Lang, Dict> = {
       whatsappMessage: "Merhaba Yusuf, portfolyonu gördüm ve seninle iletişime geçmek istiyorum.",
       or: "veya",
     },
-    footer: "Next.js ile geliştirildi",
     aria: { toggleTheme: "Temayı değiştir", toggleLang: "Dili değiştir" },
   },
 };
