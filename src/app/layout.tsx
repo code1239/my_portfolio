@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: `${profile.name} — Conversational AI & Backend Developer`,
     description,
     type: "website",
-    images: [{ url: "/yusuf-macit.jpg", width: 400, height: 400, alt: profile.name }],
+    images: [{ url: "/yusuf-macit.jpg", width: 1024, height: 1024, alt: profile.name }],
   },
   twitter: { card: "summary", title: profile.name, description, images: ["/yusuf-macit.jpg"] },
 };
