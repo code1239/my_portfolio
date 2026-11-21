@@ -31,15 +31,15 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border bg-bg/70 backdrop-blur-xl">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <a href="#top" className="text-gradient font-mono text-lg font-semibold" onClick={() => setOpen(false)}>
-          YM<span className="text-muted">.</span>
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-border bg-bg">
+      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-4 px-5 sm:px-8">
+        <a href="#top" className="font-serif text-xl tracking-tight" onClick={() => setOpen(false)}>
+          Yusuf Macit
         </a>
         <ul className="hidden items-center gap-6 text-sm text-muted md:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="transition hover:text-fg">
+              <a href={l.href} className="transition hover:text-fg hover:underline hover:underline-offset-4">
                 {l.label}
               </a>
             </li>
@@ -50,7 +50,7 @@ export function Navbar() {
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex size-9 items-center justify-center rounded-full border border-border bg-card transition hover:border-accent/50 hover:text-accent focus-visible:outline-2 focus-visible:outline-accent md:hidden"
+            className="inline-flex size-9 items-center justify-center border border-border transition hover:border-fg md:hidden"
             aria-label="Menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -62,14 +62,14 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-border bg-bg/95 backdrop-blur-xl md:hidden">
-          <ul className="mx-auto flex max-w-6xl flex-col px-5 py-2 sm:px-8">
+        <div id="mobile-menu" className="border-t border-border bg-bg md:hidden">
+          <ul className="mx-auto max-w-5xl px-5 sm:px-8">
             {links.map((l) => (
-              <li key={l.href}>
+              <li key={l.href} className="border-b border-border last:border-b-0">
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-2 py-3 text-base text-fg/90 transition hover:bg-accent-soft hover:text-accent"
+                  className="block py-4 font-serif text-2xl transition hover:text-accent"
                 >
                   {l.label}
                 </a>

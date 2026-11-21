@@ -3,6 +3,7 @@
 import { useT } from "@/i18n/useT";
 import { profile } from "@/content/resume";
 import { WhatsAppIcon } from "./icons";
+import { btnSecondary } from "./ui/Section";
 
 function useWhatsAppUrl() {
   const { t } = useT();
@@ -13,13 +14,8 @@ export function WhatsAppButton({ className = "" }: { className?: string }) {
   const { t } = useT();
   const url = useWhatsAppUrl();
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-[#06310f] shadow-sm transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] ${className}`}
-    >
-      <WhatsAppIcon className="size-4" />
+    <a href={url} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} ${className}`}>
+      <WhatsAppIcon className="size-4 text-[#25D366]" />
       {t.contact.whatsapp}
     </a>
   );
@@ -35,9 +31,9 @@ export function FloatingWhatsApp() {
       rel="noopener noreferrer"
       aria-label={t.contact.whatsapp}
       title={t.contact.whatsapp}
-      className="fixed bottom-5 right-5 z-40 grid size-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 transition hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+      className="fixed bottom-5 right-5 z-40 grid size-12 place-items-center bg-[#25D366] text-white shadow-md transition hover:scale-105"
     >
-      <WhatsAppIcon className="size-7" />
+      <WhatsAppIcon className="size-6" />
     </a>
   );
 }

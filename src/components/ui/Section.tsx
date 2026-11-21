@@ -1,47 +1,33 @@
 import { Reveal } from "./Reveal";
 
+export const btnPrimary =
+  "inline-flex items-center justify-center gap-2 border border-fg bg-fg px-5 py-3 text-sm font-medium text-bg transition hover:border-accent hover:bg-accent";
+
+export const btnSecondary =
+  "inline-flex items-center justify-center gap-2 border border-fg px-5 py-3 text-sm font-medium transition hover:bg-fg hover:text-bg";
+
 export function Section({
   id,
+  n,
   title,
   children,
 }: {
   id: string;
+  n: string;
   title: string;
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-      <Reveal>
-        <h2 className="mb-8 flex items-center gap-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-          <span className="h-6 w-1 rounded-full bg-gradient-to-b from-accent to-accent-2" />
-          {title}
-        </h2>
-      </Reveal>
-      {children}
+    <section id={id} className="border-t border-border">
+      <div className="mx-auto grid w-full max-w-5xl gap-8 px-5 py-14 sm:px-8 sm:py-20 md:grid-cols-[12rem_1fr] md:gap-12">
+        <Reveal>
+          <div className="md:sticky md:top-24">
+            <span className="font-mono text-xs text-muted">{n}</span>
+            <h2 className="mt-1 font-serif text-3xl leading-tight tracking-tight">{title}</h2>
+          </div>
+        </Reveal>
+        <div className="min-w-0">{children}</div>
+      </div>
     </section>
-  );
-}
-
-export function BentoCard({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`rounded-2xl border border-border bg-card p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_8px_40px_-12px_var(--glow)] ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-export function Chip({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-full border border-border bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
-      {children}
-    </span>
   );
 }

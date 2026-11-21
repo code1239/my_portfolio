@@ -5,16 +5,13 @@ import { useTheme } from "next-themes";
 import { useT } from "@/i18n/useT";
 import { useLang } from "@/i18n/LanguageProvider";
 
-const btn =
-  "inline-flex h-9 items-center justify-center rounded-full border border-border bg-card px-3 text-sm font-medium transition hover:border-accent/50 hover:text-accent focus-visible:outline-2 focus-visible:outline-accent";
-
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const { t } = useT();
   return (
     <button
       type="button"
-      className={`${btn} w-9 !px-0`}
+      className="inline-flex size-9 items-center justify-center border border-border transition hover:border-fg"
       aria-label={t.aria.toggleTheme}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
@@ -28,10 +25,15 @@ export function LanguageToggle() {
   const { lang, toggle } = useLang();
   const { t } = useT();
   return (
-    <button type="button" className={`${btn} gap-1 font-mono`} aria-label={t.aria.toggleLang} onClick={toggle}>
-      <span className={lang === "en" ? "text-accent" : "text-muted"}>EN</span>
+    <button
+      type="button"
+      className="inline-flex h-9 items-center gap-1.5 border border-border px-3 font-mono text-xs transition hover:border-fg"
+      aria-label={t.aria.toggleLang}
+      onClick={toggle}
+    >
+      <span className={lang === "en" ? "font-semibold text-fg underline underline-offset-4" : "text-muted"}>EN</span>
       <span className="text-muted">/</span>
-      <span className={lang === "tr" ? "text-accent" : "text-muted"}>TR</span>
+      <span className={lang === "tr" ? "font-semibold text-fg underline underline-offset-4" : "text-muted"}>TR</span>
     </button>
   );
 }

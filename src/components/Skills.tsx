@@ -1,38 +1,26 @@
 "use client";
 
-import { Bot, Handshake, Server, Terminal } from "lucide-react";
 import { useT } from "@/i18n/useT";
 import { Reveal } from "./ui/Reveal";
-import { BentoCard, Chip, Section } from "./ui/Section";
-
-const icons = [Bot, Server, Terminal, Handshake];
+import { Section } from "./ui/Section";
 
 export function Skills() {
   const { t, r } = useT();
   return (
-    <Section id="skills" title={t.sections.skills}>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {r.skills.map((s, i) => {
-          const Icon = icons[i] ?? Bot;
-          return (
-            <Reveal key={s.group} delay={0.06 * i}>
-              <BentoCard className="h-full">
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
-                    <Icon className="size-5" />
-                  </span>
-                  <h3 className="text-lg font-semibold">{s.group}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {s.items.map((item) => (
-                    <Chip key={item}>{item}</Chip>
-                  ))}
-                </div>
-              </BentoCard>
-            </Reveal>
-          );
-        })}
-      </div>
+    <Section id="skills" n="03" title={t.sections.skills}>
+      <Reveal>
+        <dl>
+          {r.skills.map((s, i) => (
+            <div
+              key={s.group}
+              className={`grid gap-2 py-6 md:grid-cols-[10rem_1fr] md:gap-8 ${i === 0 ? "pt-0" : "border-t border-border"}`}
+            >
+              <dt className="font-serif text-xl italic text-accent">{s.group}</dt>
+              <dd className="text-[15px] leading-relaxed">{s.items.join("  ·  ")}</dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
     </Section>
   );
 }

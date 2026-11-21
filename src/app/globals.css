@@ -3,49 +3,35 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg: #f6f8fa;
-  --fg: #0b1220;
-  --muted: #566170;
-  --card: #ffffff;
-  --card-hover: #fbfdff;
-  --border: rgba(15, 23, 42, 0.1);
-  --accent: #0f766e;
-  --accent-2: #0891b2;
-  --accent-soft: rgba(15, 118, 110, 0.1);
-  --grid: rgba(15, 23, 42, 0.06);
-  --glow: rgba(8, 145, 178, 0.18);
+  --bg: #faf9f6;
+  --fg: #14151a;
+  --muted: #6b6b6b;
+  --border: rgba(20, 21, 26, 0.18);
+  --accent: #1c2f7a;
 }
 
 .dark {
-  --bg: #070b12;
-  --fg: #e8edf5;
-  --muted: #94a3b8;
-  --card: #0d1420;
-  --card-hover: #101a29;
-  --border: rgba(148, 163, 184, 0.14);
-  --accent: #2dd4bf;
-  --accent-2: #38bdf8;
-  --accent-soft: rgba(45, 212, 191, 0.12);
-  --grid: rgba(148, 163, 184, 0.07);
-  --glow: rgba(45, 212, 191, 0.14);
+  --bg: #0d0d0f;
+  --fg: #f1efe9;
+  --muted: #9b9b9b;
+  --border: rgba(241, 239, 233, 0.18);
+  --accent: #9fb3ff;
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
-  --color-card: var(--card);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
-  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-newsreader);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4.5rem;
 }
 
 body {
@@ -55,24 +41,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.bg-grid {
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 30%, transparent 75%);
-}
-
-.text-gradient {
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 ::selection {
-  background: var(--accent-soft);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {

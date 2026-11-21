@@ -1,52 +1,47 @@
 "use client";
 
-import { FlaskConical, GraduationCap } from "lucide-react";
 import { useT } from "@/i18n/useT";
 import { Reveal } from "./ui/Reveal";
-import { BentoCard, Section } from "./ui/Section";
+import { Section } from "./ui/Section";
 
 export function ResearchEducation() {
   const { t, r } = useT();
   return (
-    <Section id="education" title={t.sections.education}>
-      <div className="grid gap-4 md:grid-cols-2">
-        <Reveal>
-          <BentoCard className="h-full">
-            <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
-              <GraduationCap className="size-5" />
-            </span>
-            <h3 className="mt-4 text-lg font-semibold">{r.education.school}</h3>
-            <p className="text-[15px] text-fg/85">{r.education.degree}</p>
-            <p className="mt-1 font-mono text-xs text-muted">{r.education.period}</p>
-          </BentoCard>
-        </Reveal>
+    <Section id="education" n="05" title={t.sections.education}>
+      <Reveal>
+        <div className="grid gap-2 md:grid-cols-[9rem_1fr] md:gap-8">
+          <p className="font-mono text-xs text-muted md:pt-2">{r.education.period}</p>
+          <div>
+            <h3 className="font-serif text-2xl leading-tight sm:text-3xl">{r.education.school}</h3>
+            <p className="mt-1 italic text-muted">{r.education.degree}</p>
+          </div>
+        </div>
+      </Reveal>
 
-        <Reveal delay={0.08}>
-          <BentoCard className="h-full">
-            <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
-              <FlaskConical className="size-5" />
-            </span>
-            <h3 className="mt-4 text-lg font-semibold">{t.sections.research}</h3>
-            <div className="mt-3 space-y-5">
-              {r.research.map((x) => (
-                <div key={x.org}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                    <p className="font-medium">
-                      {x.org} <span className="font-normal text-muted">— {x.role}</span>
-                    </p>
-                    <span className="font-mono text-xs text-muted">{x.period}</span>
-                  </div>
-                  <ul className="mt-1.5 space-y-1 text-[15px] text-fg/85">
-                    {x.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+      <Reveal>
+        <p className="mt-14 border-b border-border pb-3 font-mono text-xs uppercase tracking-wider text-muted">
+          {t.sections.research}
+        </p>
+        {r.research.map((x, i) => (
+          <div
+            key={x.org}
+            className={`grid gap-2 py-6 md:grid-cols-[9rem_1fr] md:gap-8 ${i > 0 ? "border-t border-border" : ""}`}
+          >
+            <p className="font-mono text-xs text-muted md:pt-1">{x.period}</p>
+            <div>
+              <h3 className="font-serif text-xl leading-tight">
+                {x.org}
+                <span className="italic text-muted"> — {x.role}</span>
+              </h3>
+              <ul className="mt-2 space-y-1 text-[15px] leading-relaxed">
+                {x.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
             </div>
-          </BentoCard>
-        </Reveal>
-      </div>
+          </div>
+        ))}
+      </Reveal>
     </Section>
   );
 }

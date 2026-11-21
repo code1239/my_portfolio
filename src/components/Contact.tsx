@@ -1,56 +1,58 @@
 "use client";
 
-import { Mail, MapPin, Phone } from "lucide-react";
 import { useT } from "@/i18n/useT";
 import { profile } from "@/content/resume";
 import { ContactForm } from "./ContactForm";
-import { GitHubIcon, LinkedInIcon } from "./icons";
 import { Reveal } from "./ui/Reveal";
-import { BentoCard, Section } from "./ui/Section";
+import { Section } from "./ui/Section";
 import { WhatsAppButton } from "./WhatsAppButton";
 
-function Row({ icon, label, href }: { icon: React.ReactNode; label: string; href?: string }) {
-  const inner = (
-    <>
-      <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">{icon}</span>
-      <span className="min-w-0 break-words text-sm">{label}</span>
-    </>
-  );
-  const cls = "flex items-center gap-3";
-  return href ? (
-    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className={`${cls} transition hover:text-accent`}>
-      {inner}
-    </a>
-  ) : (
-    <div className={cls}>{inner}</div>
+function Row({ label, value, href }: { label: string; value: string; href: string }) {
+  return (
+    <div className="grid grid-cols-[6rem_1fr] gap-4 border-t border-border py-3 text-sm first:border-t-0 first:pt-0">
+      <dt className="font-mono text-xs uppercase tracking-wider text-muted">{label}</dt>
+      <dd className="min-w-0 break-words">
+        <a
+          href={href}
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel="noopener noreferrer"
+          className="underline underline-offset-4 transition hover:text-accent"
+        >
+          {value}
+        </a>
+      </dd>
+    </div>
   );
 }
 
 export function Contact() {
-  const { t, r } = useT();
+  const { t } = useT();
   return (
-    <Section id="contact" title={t.sections.contact}>
-      <div className="grid gap-4 md:grid-cols-5">
-        <Reveal className="md:col-span-2">
-          <BentoCard className="h-full space-y-4">
-            <h3 className="text-xl font-semibold">{t.contact.heading}</h3>
-            <p className="text-sm text-muted">{t.contact.sub}</p>
-            <div className="space-y-3 pt-2">
-              <Row icon={<Mail className="size-4" />} label={profile.email} href={`mailto:${profile.email}`} />
-              <Row icon={<Phone className="size-4" />} label={profile.phone} href={`tel:+${profile.phoneIntl}`} />
-              <Row icon={<MapPin className="size-4" />} label={r.location} />
-              <Row icon={<LinkedInIcon className="size-4" />} label="LinkedIn" href={profile.linkedin} />
-              <Row icon={<GitHubIcon className="size-4" />} label="GitHub" href={profile.github} />
-            </div>
-            <div className="pt-2">
-              <WhatsAppButton className="w-full" />
-            </div>
-          </BentoCard>
+    <Section id="contact" n="06" title={t.sections.contact}>
+      <Reveal>
+        <p className="font-serif text-4xl leading-tight tracking-tight sm:text-5xl">{t.contact.heading}</p>
+        <p className="mt-4 text-muted">{t.contact.sub}</p>
+        <a
+          href={`mailto:${profile.email}`}
+          className="mt-6 inline-block break-all font-serif text-2xl italic text-accent underline underline-offset-8 sm:text-3xl"
+        >
+          {profile.email}
+        </a>
+      </Reveal>
+
+      <div className="mt-14 grid gap-12 lg:grid-cols-2">
+        <Reveal>
+          <dl>
+            <Row label="Tel" value={profile.phone} href={`tel:+${profile.phoneIntl}`} />
+            <Row label="LinkedIn" value="yusuf-macit" href={profile.linkedin} />
+            <Row label="GitHub" value="code1239" href={profile.github} />
+          </dl>
+          <div className="mt-6">
+            <WhatsAppButton />
+          </div>
         </Reveal>
-        <Reveal delay={0.08} className="md:col-span-3">
-          <BentoCard className="h-full">
-            <ContactForm />
-          </BentoCard>
+        <Reveal delay={0.08}>
+          <ContactForm />
         </Reveal>
       </div>
     </Section>

@@ -24,7 +24,9 @@ Single-page portfolio (Next.js App Router, TypeScript, Tailwind CSS v4). Bilingu
 - This is Next.js 16 with `cacheComponents` and `partialPrefetching` enabled. Read `node_modules/next/dist/docs/` before using unfamiliar APIs. Avoid `Date.now()` / `Math.random()` in server components.
 - Interactive and translated components are client components (`"use client"`) because they read the language context.
 - Default theme is **light** (`next-themes`, `enableSystem={false}`), toggle available in the navbar.
-- Theme colors are CSS variables in `src/app/globals.css`; use the Tailwind tokens (`bg-card`, `text-muted`, `border-border`, `text-accent`).
+- Design is editorial: serif headings (`font-serif`, Newsreader), Geist for body, Geist Mono for small labels/dates. Black/white with a single navy accent. Sections are rows separated by thin rules, no cards, no gradients, no glow, no rounded corners (except the status dot). Keep it that way.
+- Theme colors are CSS variables in `src/app/globals.css`; use the Tailwind tokens (`bg-bg`, `text-fg`, `text-muted`, `border-border`, `text-accent`). Shared button styles `btnPrimary` / `btnSecondary` and the `Section` layout (numbered label left, content right) live in `src/components/ui/Section.tsx`.
+- Hero photo is shown in full color (no grayscale filter).
 - Phone/WhatsApp number lives in `profile.phoneIntl` (digits only, used for `wa.me`).
 - No footer branding text; footer shows only the copyright line.
 

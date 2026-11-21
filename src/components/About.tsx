@@ -2,27 +2,25 @@
 
 import { useT } from "@/i18n/useT";
 import { Reveal } from "./ui/Reveal";
-import { BentoCard, Section } from "./ui/Section";
+import { Section } from "./ui/Section";
 
 export function About() {
   const { t, r } = useT();
   return (
-    <Section id="about" title={t.sections.about}>
-      <div className="grid gap-4 md:grid-cols-3">
-        <Reveal className="md:col-span-2 md:row-span-2">
-          <BentoCard className="h-full">
-            <p className="text-lg leading-relaxed text-fg/90">{r.summary}</p>
-          </BentoCard>
-        </Reveal>
-        {r.stats.map((s, i) => (
-          <Reveal key={s.label} delay={0.08 * (i + 1)}>
-            <BentoCard className="h-full">
-              <div className="text-gradient font-mono text-4xl font-bold">{s.value}</div>
-              <div className="mt-1 text-sm text-muted">{s.label}</div>
-            </BentoCard>
-          </Reveal>
-        ))}
-      </div>
+    <Section id="about" n="01" title={t.sections.about}>
+      <Reveal>
+        <p className="font-serif text-2xl leading-snug sm:text-3xl">{r.summary}</p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <dl className="mt-12 grid grid-cols-3 border-t border-border">
+          {r.stats.map((s) => (
+            <div key={s.label} className="flex flex-col border-l border-border pl-4 pt-5 first:border-l-0 first:pl-0">
+              <dt className="order-2 mt-1 text-xs leading-snug text-muted sm:text-sm">{s.label}</dt>
+              <dd className="font-serif text-5xl tracking-tight text-accent sm:text-6xl">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
     </Section>
   );
 }

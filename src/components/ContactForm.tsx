@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Check, LoaderCircle, Send } from "lucide-react";
+import { Check, LoaderCircle } from "lucide-react";
 import { useT } from "@/i18n/useT";
+import { btnPrimary } from "./ui/Section";
 
 type Status = "idle" | "sending" | "success" | "error" | "unavailable" | "invalid" | "tooMany";
 
 const field =
-  "w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm outline-none transition placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/20";
+  "w-full border-0 border-b border-border bg-transparent px-0 py-3 text-base outline-none transition placeholder:text-muted focus:border-fg";
 
 export function ContactForm() {
   const { t } = useT();
@@ -50,14 +51,14 @@ export function ContactForm() {
               : null;
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4" noValidate={false}>
+    <form onSubmit={onSubmit} className="space-y-2">
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-x-8 sm:grid-cols-2">
         <input className={field} name="name" required maxLength={100} placeholder={t.contact.name} aria-label={t.contact.name} />
         <input className={field} name="email" type="email" required maxLength={200} placeholder={t.contact.email} aria-label={t.contact.email} />
       </div>
       <textarea
-        className={`${field} min-h-36 resize-y`}
+        className={`${field} min-h-32 resize-y`}
         name="message"
         required
         minLength={10}
@@ -65,20 +66,13 @@ export function ContactForm() {
         placeholder={t.contact.message}
         aria-label={t.contact.message}
       />
-      <div className="flex flex-wrap items-center gap-4">
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-2 px-6 py-2.5 text-sm font-semibold text-[#04140f] transition hover:brightness-110 disabled:opacity-60"
-        >
-          {status === "sending" ? <LoaderCircle className="size-4 animate-spin" /> : <Send className="size-4" />}
+      <div className="flex flex-wrap items-center gap-4 pt-4">
+        <button type="submit" disabled={status === "sending"} className={`${btnPrimary} disabled:opacity-60`}>
+          {status === "sending" && <LoaderCircle className="size-4 animate-spin" />}
           {status === "sending" ? t.contact.sending : t.contact.send}
         </button>
         {message && (
-          <p
-            role="status"
-            className={`flex items-center gap-1.5 text-sm ${status === "success" ? "text-accent" : "text-red-500"}`}
-          >
+          <p role="status" className={`flex items-center gap-1.5 text-sm ${status === "success" ? "text-accent" : "text-red-600"}`}>
             {status === "success" && <Check className="size-4" />}
             {message}
           </p>
